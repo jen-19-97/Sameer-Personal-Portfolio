@@ -121,4 +121,39 @@ window.addEventListener("DOMContentLoaded", () => {
           }
         }
       }
+
+
+
+// Disable right-click
+document.addEventListener("contextmenu", function (event) {
+    event.preventDefault();
+});
+
+// Disable shortcut keys for Developer Tools
+document.addEventListener("keydown", function (event) {
+    if (
+        (event.ctrlKey && event.key === "u") ||  // Ctrl + U (View Source)
+        (event.ctrlKey && event.shiftKey && event.key === "I") ||  // Ctrl + Shift + I (Inspect Element)
+        (event.ctrlKey && event.shiftKey && event.key === "J") ||  // Ctrl + Shift + J (Console)
+        (event.key === "F12")  // F12 (DevTools)
+    ) {
+        event.preventDefault();
+    }
+});
+
+// Detect if Developer Tools are open and take action
+let devtoolsOpen = false;
+setInterval(function () {
+    const widthDiff = window.outerWidth - window.innerWidth > 160;
+    const heightDiff = window.outerHeight - window.innerHeight > 160;
+    
+    if (widthDiff || heightDiff) {
+        if (!devtoolsOpen) {
+            console.clear();
+            devtoolsOpen = true;
+        }
+    } else {
+        devtoolsOpen = false;
+    }
+}, 500);
  
