@@ -1,0 +1,5 @@
+{
+  "routes": [
+    { "src": "/", "dest": "/Sameer Portfolio.html" }
+  ]
+}
